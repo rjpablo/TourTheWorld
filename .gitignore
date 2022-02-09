@@ -11,15 +11,15 @@
 Documentation.docx
 
 #Compiles css files
-TourTheWorld.Web/wwwroot/src/**/*.css
+TourTheWorld/wwwroot/src/**/*.css
 
 #JSDoc output
-TourTheWorld.Web/jsdoc/out/
+TourTheWorld/jsdoc/out/
 
 #NPM cache
 Appsnodejsnpm-cache
 
-TourTheWorld.Web/wwwroot/dest/
+TourTheWorld/wwwroot/dist/
 Deployment Files/
 Designs/
 #Libraries

@@ -8,7 +8,7 @@ const sass = require('gulp-sass')(require('sass'));
 
 var paths = {
     baseSrc: 'wwwroot/src/',
-    baseDest: 'wwwroot/dest/',
+    baseDest: 'wwwroot/dist/',
     images: 'images/',
     node: './node_modules/',
     lib: './wwwroot/src/lib/',
