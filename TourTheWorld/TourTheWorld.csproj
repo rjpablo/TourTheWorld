@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.22" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bad.Core\Bad.Core\Bad.Core.csproj" />
+  </ItemGroup>
+
 </Project>
