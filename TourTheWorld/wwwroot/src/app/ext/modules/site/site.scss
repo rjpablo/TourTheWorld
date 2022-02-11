@@ -1,0 +1,198 @@
+@import 'custom-lib/bootstrap/scss/_variables.scss';
+@import '../../../../lib/bootstrap/_breakpoints.scss';
+
+.link-unstyled {
+    &,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus,
+    &:active:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+// Scroll bars
+@include media-breakpoint-up(sm) {
+
+    *::-webkit-scrollbar,
+    *::-webkit-scrollbar-thumb {
+        width: 26px;
+        border-radius: 13px;
+        background-clip: padding-box;
+        border: 10px solid transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 0 10px;
+    }
+}
+
+.bg-black {
+    background-color: $black;
+}
+
+.bg-dark {
+    background-color: #282828 !important;
+    color: $bgDarkFontColor;
+}
+
+.gradent-gray-black-v-bg {
+    border: 1px solid $gray-700;
+    background: linear-gradient(180deg, $gray-700 0%, $black 62%);
+}
+
+.black-transparent-bg {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: $gray-400;
+    border: 1px solid #0f0f0f;
+}
+
+.black-transparent-95-bg {
+    background-color: rgba(225, 225, 225, 0.95);
+    color: $gray-400;
+}
+
+.white-transparent-bg {
+    background-color: rgba(225, 225, 225, 0.6);
+}
+/****************
+    Icons
+****************/
+
+/****************
+    Widths
+****************/
+@media (max-width: 575px) {
+
+    .w-xs-100 {
+        width: 100%;
+    }
+    /* for things that should not show on mobile design */
+    .non-mobile {
+        display: none !important;
+    }
+}
+
+/****************
+    Heights
+****************/
+.min-height-300 {
+    min-height: 300px;
+}
+/****************
+   Typography
+****************/
+.line-height-1 {
+    line-height: 1rem;
+}
+
+.line-height-1-point-5 {
+    line-height: 1.5;
+}
+
+.line-height-2 {
+    line-height: 2;
+}
+
+.text-underlined {
+    text-decoration: underline;
+}
+
+/*******************
+    Miscellaneous
+*******************/
+@media (min-width: 576px) {
+    /* for things that are only for mobile design */
+    .mobile-only {
+        display: none !important;
+    }
+}
+/*************************
+    Library Overrides
+*************************/
+/* AngularJS */
+//prevents flicker when hiding/showing elements using ng-show/ng-hide
+.tbc-no-animation {
+    .ng-hide.ng-hide-animate {
+        display: none;
+    }
+}
+
+/* NgMap */
+.pac-container {
+    z-index: 1050 !important; /*Allows auto complete results to show over bootstrap modals. Modals have 1050 z-index*/
+}
+
+/***** Bootstrap *****/
+
+/* Modals */
+.modal-content {
+    border-radius: 0;
+}
+
+.modal.tbc-full-modal {
+
+    .modal-dialog {
+        min-width: 100%;
+        margin: 0;
+
+        .modal-content {
+            min-height: 100vh;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .modal-dialog {
+        margin: 0;
+    }
+}
+
+/* Cards */
+.card.tbc-card {
+    border-radius: 0;
+
+    @extend .black-transparent-bg;
+
+    .card-header {
+        border: none;
+        padding-right: $spacer;
+        padding-left: $spacer;
+    }
+
+    .card-body {
+        padding: $spacer;
+        padding-top: 0;
+    }
+}
+
+/******** Ng-Image-Gallery ********/
+/* Removes space between thumbnails */
+.ng-image-gallery .ng-image-gallery-thumbnails .thumb {
+    margin: 0 !important;
+}
+
+.ng-image-gallery .ng-image-gallery-thumbnails .thumb > .loader {
+    width: unset !important;
+}
+/******* Videogualr *********/
+/* Fixes incorrect current time indicator for wider screens */
+videogular vg-scrub-bar .container {
+    max-width: 100%;
+}
+/***** Angular Slick Carousel *****/
+slick.dark-transparent-bg {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 15px;
+    border-radius: 5px;
+}
+
+.slick-dots {
+
+    li button:before,
+    li.slick-active button:before {
+        color: #fff;
+    }
+}

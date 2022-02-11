@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="siteModule">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,8 +24,14 @@
     @* Custom *@
     <link href="~/src/app/ext/modules/site/custom-lib/glyphicon-to-font-awesome/glyphicon-to-font-awesome.css" rel="stylesheet" />
     <link href="~/src/app/ext/modules/site/custom-lib/ng-image-gallery/ng-image-gallery.min.css" rel="stylesheet" />
+    <link href="~/src/app/ext/modules/site/site.css" rel="stylesheet" />
+
+    @* For ng-cloak to work effectively, angular.js must be loaded in the header section. But jquery must be loaded first
+        so we're laoding jquery in the header as well *@
+    <script src="~/src/lib/jquery/jquery.js"></script>
+    <script src="~/src/lib/angular/angular.js"></script>
 </head>
-<body>
+<body ng-cloak ng-controller="siteController as site">
     @RenderBody()
     <script src="~/src/app/ext/modules/site/scripts/window.tbc.js"></script>
     <script type="text/javascript">
@@ -68,54 +74,52 @@
     <script src="~/src/app/ext/modules/site/scripts/lib-extensions/array-extension.js"></script>
 
     @*Third Party*@
-    <environment include="Development">
-        <script src="~/src/lib/jquery/jquery.js"></script>
-        <script src="~/src/lib/bowser/bundled.js"></script>
-        <script src="~/src/lib/hammerjs/hammer.js"></script>
-        <script src="~/src/lib/moment/moment.js"></script>
-        <script src="~/src/lib/bootstrap/bootstrap.bundle.js"></script>
-        <script src="~/src/lib/cropperjs/cropper.min.js"></script>
-        <script src="~/src/lib/angular/angular.js"></script>
-        <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-extension.js"></script>
-        <script src="~/src/lib/angular-inview/angular-inview.js"></script>
-        <script src="~/src/lib/angular-ui-router/angular-ui-router.js"></script>
-        <script src="~/src/lib/angular-local-storage/angular-local-storage.js"></script>
-        <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-sanitize-custom.js"></script>
-        <script src="~/src/lib/angular-animate/angular-animate.js"></script>
-        <script src="~/src/lib/angular-touch/angular-touch.js"></script>
-        <script src="~/src/lib/ng-infinite-scroll/ng-infinite-scroll.min.js"></script>
-        <script src="~/src/lib/slick-carousel/slick.min.js"></script>
-        <script src="~/src/lib/angular-slick-carousel/angular-slick.js"></script>
-        <script src="https://maps.google.com/maps/api/js?key=AIzaSyAnDAeNwkSgk3L6AnE1IB2VjXw6LabhKgA&libraries=placeses,visualization,drawing,geometry,places"></script>
-        <script src="~/src/app/ext/modules/site/custom-lib/markerclusterer/markerclusterer.js"></script>
-        <script src="~/src/lib/ngmap/ng-map.js"></script>
-        <script src="~/src/lib/@@fullcalendar/core/main.js"></script>
-        <script src="~/src/lib/@@fullcalendar/interaction/main.js"></script>
-        <script src="~/src/lib/@@fullcalendar/daygrid/main.js"></script>
-        <script src="~/src/lib/@@fullcalendar/timegrid/main.js"></script>
-        <script src="~/src/lib/ui-bootstrap4/ui-bootstrap.js"></script>
-        <script src="~/src/lib/ui-bootstrap4/ui-bootstrap-tpls.js"></script>
-        <script src="~/src/app/ext/modules/site/custom-lib/angularjs-bootstrap-datetimepicker/js/datetimepicker.js"></script>
-        <script src="~/src/app/ext/modules/site/custom-lib/angularjs-bootstrap-datetimepicker/js/datetimepicker.templates.js"></script>
-        <script src="~/src/lib/angularjs-toaster/toaster.js"></script>
-        <script src="~/src/lib/angular-bootstrap-colorpicker/bootstrap-colorpicker-module.js"></script>
-        <script src="~/src/app/ext/modules/site/custom-lib/ng-image-gallery/ng-image-gallery.js"></script>
-        <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-wysiwyg-custom.js"></script>
-        <script src="~/src/lib/ng-file-upload/ng-file-upload.js"></script>
-        <script src="~/src/lib/videogular/videogular/videogular.js"></script>
-        <script src="~/src/lib/videogular-controls/vg-controls.js"></script>
-        <script src="~/src/lib/videogular-buffering/vg-buffering.js"></script>
-        <script src="~/src/lib/videogular-overlay-play/vg-overlay-play.js"></script>
-    </environment>
+<environment include="Development">
+    <script src="~/src/lib/bowser/bundled.js"></script>
+    <script src="~/src/lib/hammerjs/hammer.js"></script>
+    <script src="~/src/lib/moment/moment.js"></script>
+    <script src="~/src/lib/bootstrap/bootstrap.bundle.js"></script>
+    <script src="~/src/lib/cropperjs/cropper.min.js"></script>
+    <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-extension.js"></script>
+    <script src="~/src/lib/angular-agility/angular-agility.min.js"></script>
+    <script src="~/src/lib/angular-inview/angular-inview.js"></script>
+    <script src="~/src/lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/src/lib/angular-local-storage/angular-local-storage.js"></script>
+    <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-sanitize-custom.js"></script>
+    <script src="~/src/lib/angular-animate/angular-animate.js"></script>
+    <script src="~/src/lib/angular-touch/angular-touch.js"></script>
+    <script src="~/src/lib/ng-infinite-scroll/ng-infinite-scroll.min.js"></script>
+    <script src="~/src/lib/slick-carousel/slick.min.js"></script>
+    <script src="~/src/lib/angular-slick-carousel/angular-slick.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAnDAeNwkSgk3L6AnE1IB2VjXw6LabhKgA&libraries=placeses,visualization,drawing,geometry,places"></script>
+    <script src="~/src/app/ext/modules/site/custom-lib/markerclusterer/markerclusterer.js"></script>
+    <script src="~/src/lib/ngmap/ng-map.js"></script>
+    <script src="~/src/lib/@@fullcalendar/core/main.js"></script>
+    <script src="~/src/lib/@@fullcalendar/interaction/main.js"></script>
+    <script src="~/src/lib/@@fullcalendar/daygrid/main.js"></script>
+    <script src="~/src/lib/@@fullcalendar/timegrid/main.js"></script>
+    <script src="~/src/lib/ui-bootstrap4/ui-bootstrap.js"></script>
+    <script src="~/src/lib/ui-bootstrap4/ui-bootstrap-tpls.js"></script>
+    <script src="~/src/app/ext/modules/site/custom-lib/angularjs-bootstrap-datetimepicker/js/datetimepicker.js"></script>
+    <script src="~/src/app/ext/modules/site/custom-lib/angularjs-bootstrap-datetimepicker/js/datetimepicker.templates.js"></script>
+    <script src="~/src/lib/angularjs-toaster/toaster.js"></script>
+    <script src="~/src/lib/angular-bootstrap-colorpicker/bootstrap-colorpicker-module.js"></script>
+    <script src="~/src/app/ext/modules/site/custom-lib/ng-image-gallery/ng-image-gallery.js"></script>
+    <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-wysiwyg-custom.js"></script>
+    <script src="~/src/lib/ng-file-upload/ng-file-upload.js"></script>
+    <script src="~/src/lib/videogular/videogular/videogular.js"></script>
+    <script src="~/src/lib/videogular-controls/vg-controls.js"></script>
+    <script src="~/src/lib/videogular-buffering/vg-buffering.js"></script>
+    <script src="~/src/lib/videogular-overlay-play/vg-overlay-play.js"></script>
+</environment>
     <environment exclude="Development">
-        <script src="~/src/lib/jquery/jquery.js"></script>
         <script src="~/src/lib/bowser/bundled.js"></script>
         <script src="~/src/lib/hammerjs/hammer.js"></script>
         <script src="~/src/lib/moment/moment.js"></script>
         <script src="~/src/lib/bootstrap/bootstrap.bundle.js"></script>
         <script src="~/src/lib/cropperjs/cropper.min.js"></script>
-        <script src="~/src/lib/angular/angular.js"></script>
         <script src="~/src/app/ext/modules/site/scripts/lib-extensions/angular-extension.js"></script>
+        <script src="~/src/lib/angular-agility/angular-agility.min.js"></script>
         <script src="~/src/lib/angular-inview/angular-inview.js"></script>
         <script src="~/src/lib/angular-ui-router/angular-ui-router.js"></script>
         <script src="~/src/lib/angular-local-storage/angular-local-storage.js"></script>
@@ -147,7 +151,9 @@
         <script src="~/src/lib/videogular-overlay-play/vg-overlay-play.js"></script>
     </environment>
 
-    <script src="~/src/lib/angular-agility/angular-agility.min.js"></script>
+    <script src="~/src/app/ext/modules/site/site-module.js"></script>
+
+    <script src="~/src/app/ext/modules/site/site-controller.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
