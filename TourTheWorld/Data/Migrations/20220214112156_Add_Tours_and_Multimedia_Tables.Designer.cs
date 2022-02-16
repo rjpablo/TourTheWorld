@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TourTheWorld.Data;
 
 namespace TourTheWorld.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220214112156_Add_Tours_and_Multimedia_Tables")]
+    partial class Add_Tours_and_Multimedia_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -304,7 +306,7 @@ namespace TourTheWorld.Data.Migrations
                         new
                         {
                             Id = -1L,
-                            DateCreated = new DateTime(2022, 2, 14, 15, 28, 39, 282, DateTimeKind.Local).AddTicks(7149),
+                            DateCreated = new DateTime(2022, 2, 14, 19, 21, 56, 634, DateTimeKind.Local).AddTicks(2348),
                             Description = "Whole day trip around Pangasinan",
                             Price = 2500.00m,
                             PrimaryMediaId = -1L,
@@ -313,7 +315,7 @@ namespace TourTheWorld.Data.Migrations
                         new
                         {
                             Id = -2L,
-                            DateCreated = new DateTime(2022, 2, 14, 15, 28, 39, 282, DateTimeKind.Local).AddTicks(7149),
+                            DateCreated = new DateTime(2022, 2, 14, 19, 21, 56, 635, DateTimeKind.Local).AddTicks(2099),
                             Description = "Whole day trip around La Union",
                             Price = 2200.00m,
                             PrimaryMediaId = -2L,
