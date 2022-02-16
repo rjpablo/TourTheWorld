@@ -62,7 +62,7 @@ namespace TourTheWorld
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Tours}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
