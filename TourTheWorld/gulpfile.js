@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='scss-to-css' />
+﻿/// <binding ProjectOpened='watch-styles' />
 const gulp = require('gulp');
 const merge = require("merge-stream");
 const del = require("del");
