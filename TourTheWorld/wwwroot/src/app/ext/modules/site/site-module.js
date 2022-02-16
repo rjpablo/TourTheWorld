@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var module = angular.module('siteModule', [
+    var module = angular.module('bad.site.module', [
         'ui.router',
         'ngSanitize',
         'ngAnimate',

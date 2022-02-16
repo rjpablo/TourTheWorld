@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyCommonService', ['drbblyToastService', '$log', '$location', 'i18nService',
             'modalService',
             function (drbblyToastService, $log, $location, i18nService, modalService) {

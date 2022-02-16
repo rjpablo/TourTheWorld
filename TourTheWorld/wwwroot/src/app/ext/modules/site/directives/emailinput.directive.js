@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .directive('drbblyEmailinput', [function () {
             var EMAIL_REGEXP = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyhttpService', ['$http', 'settingsService', '$q',
             function ($http, settingsService, $q) {
 

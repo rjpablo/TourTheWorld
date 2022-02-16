@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('permissionsService', ['drbblyhttpService', '$injector',
             function (drbblyhttpService, $injector) {
                 var api = 'api/permissions/';

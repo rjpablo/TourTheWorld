@@ -4,7 +4,7 @@
     //fix for custom ng-sanitize incompatibility with AngularJS 1.7
     angular.lowercase = angular.$$lowercase;
 
-    angular.drbblyRawModuleNames = [];
+    angular.badRawModuleNames = [];
 
     var originalModuleFunc = angular.module;
     angular.module = function () {
@@ -17,9 +17,9 @@
             var moduleName = arguments[0];
             var dependencies = arguments[1];
 
-            if (moduleName === 'siteModule' ||
+            if (moduleName === 'bad.site.module' ||
                 //check if this module depends on one of our modules
-                dependencies.drbblyIntersect(angular.drbblyRawModuleNames).drbblyAny()) {
+                dependencies.drbblyIntersect(angular.badRawModuleNames).drbblyAny()) {
                 //this is our module for sure
                 //(no one else is writing dependencies on our modules except us)
             }
@@ -28,7 +28,7 @@
                 return module;
             }
 
-            angular.drbblyRawModuleNames.push(moduleName); //Dribbly only
+            angular.badRawModuleNames.push(moduleName); //Dribbly only
 
             overrideComponentFunc(module);
         }
@@ -39,32 +39,27 @@
     function overrideComponentFunc(module) {
         var originalComponentFn = module.component;
         module.component = function (componentName, options) {
-            var moduleName = module.name.replace('Module', '');
+            console.log('Initializing component ' + componentName);
+            var moduleName = module.name.replace('.module', '');
             //if registering a component... (vs. retrieving)
             if (arguments.length === 2) {
                 //override templateUrl
-                if (options.templateUrl === 'drbbly-default') {
-                    var trimmedComponentName = componentName.replace('drbbly', '').toLowerCase();
-                    if (moduleName === 'main') {
-                        if (trimmedComponentName.indexOf('container') > -1) {
-                            options.templateUrl = './src/modules/main/containers/' + trimmedComponentName + '/'
-                                + trimmedComponentName + '.component.html';
-                        }
-                        else {
-                            options.templateUrl = './src/modules/main/components/' + trimmedComponentName + '/'
-                                + trimmedComponentName + '.component.html';
-                        }
-                    }
-                    else if (moduleName === 'app') {
-                        options.templateUrl = './src/shared/modules/app/components/' + trimmedComponentName + '/'
+                if (options.templateUrl === 'bad-template' || options.templateUrl === 'drbbly-default') {
+                    var trimmedComponentName = componentName.replace('bad', '').toLowerCase();
+                    if (moduleName === 'bad.main') {
+                        options.templateUrl = '/src/app/int/components/' + trimmedComponentName + '/'
                             + trimmedComponentName + '.component.html';
                     }
-                    else if (moduleName === 'site') {
-                        options.templateUrl = './src/shared/modules/site/components/' + trimmedComponentName + '/'
+                    else if (moduleName === 'bad.app') {
+                        options.templateUrl = '/src/app/ext/modules/app/components/' + trimmedComponentName + '/'
                             + trimmedComponentName + '.component.html';
                     }
-                    else if (moduleName === 'auth') {
-                        options.templateUrl = './src/modules/auth/components/' + trimmedComponentName + '/'
+                    else if (moduleName === 'bad.site') {
+                        options.templateUrl = '/src/app/ext/modules/site/components/' + trimmedComponentName + '/'
+                            + trimmedComponentName + '.component.html';
+                    }
+                    else if (moduleName === 'bad.auth') {
+                        options.templateUrl = '/src/modules/auth/components/' + trimmedComponentName + '/'
                             + trimmedComponentName + '.component.html';
                     }
                 }

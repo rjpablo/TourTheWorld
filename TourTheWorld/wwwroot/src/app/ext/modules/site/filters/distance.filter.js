@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .filter('drbblyDistance', ['i18nService', function (i18nService) {
             /**
              * Appends unit to distance

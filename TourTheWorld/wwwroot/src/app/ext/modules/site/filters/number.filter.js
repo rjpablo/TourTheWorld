@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .filter('drbblyNumber', function () {
             return function (input, digits) {
                 // no need to format if less than 1k

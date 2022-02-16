@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyEventsService', ['$rootScope', '$q',
             function ($rootScope, $q) {
 

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyContactsService', ['drbblyhttpService',
             function (drbblyhttpService) {
                 var api = 'api/Contacts/';

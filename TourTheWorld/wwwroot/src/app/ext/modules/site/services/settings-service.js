@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('settingsService', serviceFn);
     serviceFn.$inject = ['$location', '$q', '$http', '$rootScope', 'drbblyCommonService'];
     function serviceFn($location, $q, $http, $rootScope, drbblyCommonService) {

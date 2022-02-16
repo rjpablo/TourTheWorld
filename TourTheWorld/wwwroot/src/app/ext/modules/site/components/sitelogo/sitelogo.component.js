@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .component('drbblySitelogo', {
             bindings: {},
             controllerAs: 'dsl',

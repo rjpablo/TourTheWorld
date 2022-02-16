@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .directive('drbblyCustomvalidator', function (i18nService, $sanitize) {
 
             function linkFunc(scope, elm, attrs, ctrl) {

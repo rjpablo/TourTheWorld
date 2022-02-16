@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .component('drbblyMobiletoolbar', {
             bindings: {
                 // toolbar: '<', // TODO: remove refenrences if app-navigator stays in the footer permanently

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .filter('gender', ['i18nService',
             function (i18nService) {
                 return function (input) {

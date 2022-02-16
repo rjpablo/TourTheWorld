@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .directive('i18n', ['i18nService', '$sanitize',
             function (i18nService, $sanitize) {
 

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('modalService', ['$uibModal', '$rootScope', '$q', '$transitions',
             function ($uibModal, $rootScope, $q, transitions) {
 

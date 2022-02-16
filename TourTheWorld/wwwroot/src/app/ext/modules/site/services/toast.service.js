@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyToastService', ['$timeout', 'toaster',
             function ($timeout, toaster) {
 

@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .service('drbblyNotificationsService', ['$timeout', 'drbblyhttpService', '$q', '$filter',
             'drbblyDatetimeService', 'authService',
             function ($timeout, drbblyhttpService, $q, $filter,

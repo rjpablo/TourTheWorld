@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .directive('drbblyTemplate', ['$parse', function ($parse) {
 
             function linkFunc(scope, element, attrs) {

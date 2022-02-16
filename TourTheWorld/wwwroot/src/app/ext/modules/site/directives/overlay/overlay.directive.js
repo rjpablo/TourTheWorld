@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .directive('drbblyOverlay', ['i18nService', '$timeout',
             function (i18nService, $timeout) {
 

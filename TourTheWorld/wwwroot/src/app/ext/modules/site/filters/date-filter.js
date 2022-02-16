@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
+    angular.module('bad.site.module')
         .filter('drbblydate', ['i18nService', '$filter', 'settingsService',
             function (i18nService, $filter, settingsService) {
                 var filter = function (date, format) {

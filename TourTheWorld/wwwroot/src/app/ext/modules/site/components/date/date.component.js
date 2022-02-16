@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('siteModule')
         .component('drbblyDate', {
+    angular.module('bad.site.module')
             bindings: {
                 date: '<',
                 format: '<',

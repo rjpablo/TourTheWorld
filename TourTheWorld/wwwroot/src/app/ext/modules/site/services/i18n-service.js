@@ -3,8 +3,8 @@
 
     // If an entry can be used in other apps other than Dribbly (basketball), such as Store, it should go under site.
 
-    angular.module('siteModule')
         .service('i18nService', ['$timeout', 'constants', function ($timeout, constants) {
+    angular.module('bad.site.module')
             var _entries = {};
             var _modules = ['site', 'app', 'main', 'auth'];
             var _entriesTmp = {
