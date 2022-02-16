@@ -3,10 +3,10 @@
 
     // If an entry can be used in other apps other than Dribbly (basketball), such as Store, it should go under site.
 
-        .service('i18nService', ['$timeout', 'constants', function ($timeout, constants) {
     angular.module('bad.site.module')
+        .service('badI18nService', ['$timeout', 'constants', function ($timeout, constants) {
             var _entries = {};
-            var _modules = ['site', 'app', 'main', 'auth'];
+            var _modules = ['site', 'app', 'auth'];
             var _entriesTmp = {
                 site: {
                     AboutUs: 'About Us',
@@ -120,6 +120,9 @@
                     ResetLinkSentDetails: 'A reset link has been sent to <strong>{email}</strong>. Please follow the instructions in the email to reset your password.',
                     ResetPassword: 'Reset Password',
                     SignUp: 'Sign Up'
+                },
+                app: {
+                    ViewFullDetails: 'View Full Details'
                 }
             };
 

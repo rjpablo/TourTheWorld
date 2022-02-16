@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
 
-        .service('drbblyDatetimeService', [function () {
     angular.module('bad.site.module')
+        .service('badDatetimeService', [function () {
 
             function removeTime(date) {
                 var _date = angular.copy(date);

@@ -1,26 +1,26 @@
 ﻿(function () {
     'use strict';
 
-        .component('drbblyDate', {
     angular.module('bad.site.module')
+        .component('badDate', {
             bindings: {
                 date: '<',
                 format: '<',
                 asFromNow: '<'
             },
             controllerAs: 'dte',
-            templateUrl: 'drbbly-default',
+            templateUrl: 'bad-template',
             controller: controllerFn
         });
 
-    controllerFn.$inject = ['settingsService', 'drbblyDatetimeService'];
-    function controllerFn(settingsService, drbblyDatetimeService) {
+    controllerFn.$inject = ['badDatetimeService'];
+    function controllerFn(badDatetimeService) {
         var dte = this;
 
         dte.$onInit = function () {
-            dte.format = dte.format || settingsService.defaultDateFormat;
+            dte.format = dte.format || 'MMM d, y h:mm a';
             if (dte.asFromNow) {
-                dte.dateText = moment(drbblyDatetimeService.toUtcString(dte.date)).fromNow();
+                dte.dateText = moment(badDatetimeService.toUtcString(dte.date)).fromNow();
             }
         };
     }

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TourTheWorld.Models.TourModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+}
+
+<script type="text/javascript">
+    
+</script>
+<div class="row">
+    <div class="col-12 offset-lg-2 col-lg-8">
+        <div class="my-5">
+            <h1>Find Your Next Perfect Tour</h1>
+
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+        </div>
+        <bad-tourlist tours="app.model"></bad-tourlist>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿<div class="row">
+    <div class="primary-media-container col-12 col-sm-6">
+        <img ng-src="{{tli.tour.primaryMedia.url}}" class="img-thumbnail border-0">
+    </div>
+    <div class="col-sm-6 col-12">
+        <h4 class="mb-3">{{tli.tour.title}}</h4>
+        <h5 class="mb-3 text-success">{{ tli.tour.price | badCurrency}}</h5>
+        <pre class="richtext description">{{tli.tour.description}}</pre>
+        <a ng-href="/Tours/Details/{{tli.tour.id}}">{{'app.ViewFullDetails' | badI18n}}</a>
+    </div>
+</div>

@@ -13,6 +13,12 @@
     }
 }
 
+pre.richtext {
+    font-family: $font-family-sans-serif;
+    overflow: inherit;
+    white-space: pre-wrap;
+}
+
 // Scroll bars
 @include media-breakpoint-up(sm) {
 
