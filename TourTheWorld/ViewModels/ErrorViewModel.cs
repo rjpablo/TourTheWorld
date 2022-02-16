@@ -1,6 +1,6 @@
 using System;
 
-namespace TourTheWorld.Models
+namespace TourTheWorld.ViewModels
 {
     public class ErrorViewModel
     {
