@@ -7,11 +7,11 @@
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-controller="Tours" asp-action="Index">
                 TourTheWorld
-                <span class="d-inline d-sm-none small">xs</span>
-                <span class="d-none d-sm-inline d-md-none small">sm</span>
-                <span class="d-none d-md-inline d-lg-none small">md</span>
-                <span class="d-none d-lg-inline d-xl-none small">lg</span>
-                <span class="d-none d-xl-inline small">xl</span>
+            <span class="d-inline d-sm-none small">xs</span>
+            <span class="d-none d-sm-inline d-md-none small">sm</span>
+            <span class="d-none d-md-inline d-lg-none small">md</span>
+            <span class="d-none d-lg-inline d-xl-none small">lg</span>
+            <span class="d-none d-xl-inline small">xl</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -44,13 +44,6 @@
 </footer>
 
 <toaster-container toaster-options="{'time-out': 2000, 'position-class': 'toast-top-center'}"></toaster-container>
-
-<script>
-    // We want to initialize the BAD object first before running other scripts so we put this here
-    // instead of putting it in the Scripts section below
-    var BAD = {};
-    BAD.model = @Html.Raw(Json.Serialize(Model));
-</script>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

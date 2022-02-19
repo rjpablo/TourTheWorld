@@ -1,19 +1,20 @@
 ﻿using Bad.Core.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using TourTheWorld.Models;
+using TourTheWorld.Models.Identity;
 
 namespace TourTheWorld.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         { }
-
         public DbSet<TourModel> Tours { get; set; }
         public DbSet<MultimediaModel> Multimedia { get; set; }
 

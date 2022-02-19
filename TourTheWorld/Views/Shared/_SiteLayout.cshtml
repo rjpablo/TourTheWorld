@@ -40,8 +40,6 @@
     @RenderBody()
     <script src="~/src/app/ext/modules/site/scripts/window.tbc.js"></script>
     <script type="text/javascript">
-        var BAD = {};
-        BAD.model = @Html.Raw(Json.Serialize(Model));
 
         window.tbc.logClientException = function (message, errorMsg, url, errorCode, stackTrace, lineNo, column) {
 
