@@ -59,7 +59,7 @@ namespace TourTheWorld.Controllers.API
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException) 
             {
                 if (!TourModelExists(id))
                 {

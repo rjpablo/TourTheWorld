@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TourTheWorld.Data;
+using TourTheWorld.Repositories;
+using TourTheWorld.Services;
 
 namespace TourTheWorld
 {
@@ -34,6 +36,9 @@ namespace TourTheWorld
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<ITourRepository, TourRepository>();
+            services.AddScoped<ITourService, TourService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

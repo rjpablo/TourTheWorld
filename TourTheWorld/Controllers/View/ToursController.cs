@@ -7,22 +7,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TourTheWorld.Data;
 using TourTheWorld.Models;
+using TourTheWorld.Repositories;
+using TourTheWorld.Services;
 
 namespace TourTheWorld.Controllers
 {
     public class ToursController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ITourService _tourService;
+        private readonly ITourRepository _tourRepository;
 
-        public ToursController(ApplicationDbContext context)
+        public ToursController(ApplicationDbContext context,
+            ITourService tourService,
+            ITourRepository tourRepository)
         {
             _context = context;
+            _tourService = tourService;
+            _tourRepository = tourRepository;
         }
 
         // GET: Tours
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tours.Include(tour=>tour.PrimaryMedia).ToListAsync());
+            return View(await _tourService.GetToursAsync());
         }
 
         // GET: Tours/Details/5
@@ -33,13 +41,12 @@ namespace TourTheWorld.Controllers
                 return NotFound();
             }
 
-            var tourModel = await _context.Tours
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var tourModel = await _tourService.GetTourByIdAsync(id.Value);
             if (tourModel == null)
             {
                 return NotFound();
             }
-
+             
             return View(tourModel);
         }
 
@@ -58,8 +65,8 @@ namespace TourTheWorld.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tourModel);
-                await _context.SaveChangesAsync();
+                _tourRepository.Insert(tourModel);
+                await _tourRepository.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(tourModel);
@@ -148,6 +155,11 @@ namespace TourTheWorld.Controllers
         private bool TourModelExists(long id)
         {
             return _context.Tours.Any(e => e.Id == id);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _tourRepository.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
