@@ -5,6 +5,6 @@ namespace TourTheWorld.Services
 {
     public interface IUsersService
     {
-        Task<SignInResultModel> LoginAsync(LoginModel model);
+        Task<SignInResultModel> LoginAsync(LoginInputModel model);
     }
 }

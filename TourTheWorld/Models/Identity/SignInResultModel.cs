@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace TourTheWorld.Models.Identity
 {
-    public class SignInResultModel
+    public class SignInResultModel: SignInResult
     {
-        public SignInResultModel(bool isSuccess, string token = "", DateTime? tokenExpiry = null)
+        public SignInResultModel(SignInResult result)
         {
-            IsSuccess = isSuccess;
-            Token = token;
-            TokenExpiry = tokenExpiry;
+            Succeeded = result.Succeeded;
+            IsLockedOut = result.IsLockedOut;
+            RequiresTwoFactor = result.RequiresTwoFactor;
+            IsNotAllowed = result.IsNotAllowed;            
         }
-        public bool IsSuccess { get; set; }
         public string Token { get; set; }
         public DateTime? TokenExpiry { get; set; }
     }

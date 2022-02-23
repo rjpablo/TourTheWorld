@@ -28,10 +28,13 @@ namespace TourTheWorld.Services
             _userManager = userManager;
         }
 
-        public async Task<SignInResultModel> LoginAsync(LoginModel model)
+        public async Task<SignInResultModel> LoginAsync(LoginInputModel model)
         {
+            var result = await _signinManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);
+            SignInResultModel toReturn = new SignInResultModel(result);
+            
             var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            if (result.Succeeded)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -56,10 +59,14 @@ namespace TourTheWorld.Services
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
+                string strToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                return new SignInResultModel(true, new JwtSecurityTokenHandler().WriteToken(token), tokenExpiry);
+                toReturn.Token = strToken;
+                toReturn.TokenExpiry = tokenExpiry;
+
+                return toReturn;
             }
-            return new SignInResultModel(false);
+            return toReturn;
         }
 
     }
