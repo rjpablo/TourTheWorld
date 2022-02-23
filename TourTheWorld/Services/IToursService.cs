@@ -8,7 +8,7 @@ using TourTheWorld.Models;
 
 namespace TourTheWorld.Services
 {
-    public interface ITourService : IService
+    public interface IToursService : IService
     {
         Task<IEnumerable<TourModel>> GetToursAsync();
         Task<TourModel> GetTourByIdAsync(long id);

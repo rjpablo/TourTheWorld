@@ -11,11 +11,11 @@ using TourTheWorld.Repositories;
 
 namespace TourTheWorld.Services
 {
-    public class TourService:BaseService, ITourService
+    public class ToursService:BaseService, IToursService
     {
         private readonly ITourRepository _tourRepository;
 
-        public TourService(ApplicationDbContext context,
+        public ToursService(ApplicationDbContext context,
             ITourRepository tourRepository)
             : base(context)
         {
