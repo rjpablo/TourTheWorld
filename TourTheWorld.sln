@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourTheWorld", "TourTheWorl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bad.Core", "..\Bad.Core\Bad.Core\Bad.Core.csproj", "{820F43CF-2450-4417-8D10-0CA7A118FC0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bad.Email", "Bad.Email\Bad.Email.csproj", "{99C98852-1221-4884-AEE7-9B1A8D53E357}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
