@@ -62,9 +62,15 @@ namespace TourTheWorld
                     ValidIssuer = Configuration["JWT:ValidIssuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
+            })
+            .AddFacebook(options =>
+            {
+                // FB App: TourTheWorld - Test 1
+                options.ClientId = "215329317429479";
+                options.ClientSecret = "c588f5b0a2ae957aec677110c027b9f8";
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
