@@ -16,6 +16,7 @@ namespace TourTheWorld.Data
             : base(options)
         { }
         public DbSet<TourModel> Tours { get; set; }
+        public DbSet<AccountModel> Accounts { get; set; }
         public DbSet<MultimediaModel> Multimedia { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -83,6 +83,7 @@ namespace TourTheWorld
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IEmailConfiguration, EmailConfiguration>();
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IAccountsRepository, AccountsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

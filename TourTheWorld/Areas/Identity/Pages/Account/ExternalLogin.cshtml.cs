@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using TourTheWorld.Models.Identity;
+using TourTheWorld.Services;
 
 namespace TourTheWorld.Areas.Identity.Pages.Account
 {
@@ -23,18 +24,21 @@ namespace TourTheWorld.Areas.Identity.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IUsersService _usersService;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUsersService usersService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _usersService = usersService;
         }
 
         [BindProperty]
@@ -52,6 +56,9 @@ namespace TourTheWorld.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            [MaxLength(30)]
+            public string Name { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -98,13 +105,11 @@ namespace TourTheWorld.Areas.Identity.Pages.Account
                 // If the user does not have an account, then ask the user to create an account.
                 ReturnUrl = returnUrl;
                 ProviderDisplayName = info.ProviderDisplayName;
-                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                Input = new InputModel
                 {
-                    Input = new InputModel
-                    {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                    };
-                }
+                    Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    Name = info.Principal.FindFirstValue(ClaimTypes.GivenName)
+                };
                 return Page();
             }
         }
@@ -124,7 +129,7 @@ namespace TourTheWorld.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
 
-                var result = await _userManager.CreateAsync(user);
+                var result = await _usersService.CreateWithAccountAsync(user, Input.Name);
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);

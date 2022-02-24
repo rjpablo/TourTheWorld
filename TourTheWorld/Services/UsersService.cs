@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,58 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TourTheWorld.Models;
 using TourTheWorld.Models.Identity;
+using TourTheWorld.Repositories;
 
 namespace TourTheWorld.Services
 {
     public class UsersService: IUsersService
     {
         private IConfiguration _configuration;
+        private readonly ILogger<UsersService> _logger;
         private readonly SignInManager<ApplicationUser> _signinManager;
+        private readonly IAccountsRepository _accountRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public UsersService(IConfiguration config,
+            ILogger<UsersService> logger,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signinManager)
+            SignInManager<ApplicationUser> signinManager,
+            IAccountsRepository accountRepository)
         {
             _configuration  = config;
+            _logger = logger;
             _signinManager = signinManager;
+            _accountRepository = accountRepository;
             _userManager = userManager;
+        }
+
+        public async Task<IdentityResult> CreateWithAccountAsync(ApplicationUser user, string AccountName, string password = null)
+        {
+            IdentityResult result; 
+            
+            if(password == null)
+            {
+                result = await _userManager.CreateAsync(user);
+            }
+            else
+            {
+                result = await _userManager.CreateAsync(user, password);
+            }
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
+
+                _accountRepository.Insert(new Models.AccountModel
+                {
+                    IdentityUserId = user.Id,
+                    Name = AccountName
+                });
+                await _accountRepository.SaveChangesAsync();
+            }
+            return result;
         }
 
         public async Task<SignInResultModel> LoginAsync(LoginInputModel model)
