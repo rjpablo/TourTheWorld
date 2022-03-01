@@ -32,11 +32,10 @@ namespace TourTheWorld.Controllers
         // GET: Tours
         public async Task<IActionResult> Index()
         {
-            return View(await _tourService.GetToursAsync());
+            return View((await _tourService.GetToursAsync()).OrderByDescending(t=>t.DateCreated));
         }
 
         // GET: Tours/Details/5
-        [Authorize]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
