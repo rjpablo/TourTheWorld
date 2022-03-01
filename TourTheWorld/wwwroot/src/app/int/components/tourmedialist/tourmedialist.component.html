@@ -1,0 +1,11 @@
+﻿<div>
+    <span class="d-block text-center" ng-if="!tml.mediaList || tml.mediaList.length == 0">{{'app.AddTourMediaPrompt' | badI18n}}</span>
+    <bad-gallery can-add="tml.canAdd"
+                 on-select="tml.onFilesSelected"
+                 media="tml.mediaList"></bad-gallery>
+    <a ng-href="{{'/Tours/Details/' + tml.tour.id}}"
+       ng-disabled="tml.isBusy"
+       class="btn btn-primary btn-block mt-3 mt-5">
+        {{'site.Done' | badI18n}}
+    </a>
+</div>

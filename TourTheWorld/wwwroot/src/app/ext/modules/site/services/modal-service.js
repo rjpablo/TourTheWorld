@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('bad.site.module')
-        .service('modalService', ['$uibModal', '$rootScope', '$q', '$transitions',
-            function ($uibModal, $rootScope, $q, transitions) {
+        .service('badModalService', ['$uibModal', '$rootScope',
+            function ($uibModal, $rootScope) {
 
                 function _show(options) {
                     setDefaultOptions(options);

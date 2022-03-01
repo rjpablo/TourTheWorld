@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('bad.site.module')
-        .service('drbblyCommonService', ['drbblyToastService', '$log', '$location', 'i18nService',
-            'modalService',
-            function (drbblyToastService, $log, $location, i18nService, modalService) {
+        .service('badCommonService', ['badToastService', '$log', '$location', 'badI18nService',
+            'badModalService',
+            function (badToastService, $log, $location, badI18nService, badModalService) {
 
                 var _handleError = function (error, friendlyMsgKey, friendlyMsgRaw) {
                     // Do nothing if an HTTP error is passed because
@@ -13,7 +13,7 @@
                         var friendlyMsg;
                         var errorLog;
                         if (friendlyMsgKey) {
-                            friendlyMsg = i18nService.getString(friendlyMsgKey);
+                            friendlyMsg = badI18nService.getString(friendlyMsgKey);
                         }
                         else {
                             friendlyMsg = friendlyMsgRaw;
@@ -73,7 +73,7 @@
 
                 function showFriendlyError(error) {
                     if (error && (error.friendlyMessage || error.friendlyMessageKey)) {
-                        modalService.alert({
+                        badModalService.alert({
                             msg2Key: error.friendlyMessageKey,
                             msg2Raw: error.friendlyMessage
                         });
@@ -167,7 +167,7 @@
                     return data;
                 }
 
-                this.toast = drbblyToastService;
+                this.toast = badToastService;
                 this.handleError = _handleError;
                 this.handleHttpError = _handleHttpError;
                 this.log = $log;

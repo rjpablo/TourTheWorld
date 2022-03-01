@@ -5,9 +5,10 @@
         // Angular modules 
 
         // Custom modules 
-        'bad.site.module'
+        'bad.site.module',
 
         // 3rd Party Modules
+        'ngFileUpload',
 
     ]);
 })();

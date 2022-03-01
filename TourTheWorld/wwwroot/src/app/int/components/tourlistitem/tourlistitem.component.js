@@ -16,7 +16,7 @@
         var tli = this;
 
         tli.$onInit = function () {
-            console.log(tli.tour)
+            
         };
     }
 })();

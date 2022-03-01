@@ -2,19 +2,23 @@
     'use strict';
 
     angular.module('bad.site.module')
-        .service('settingsService', serviceFn);
-    serviceFn.$inject = ['$location', '$q', '$http', '$rootScope', 'drbblyCommonService'];
-    function serviceFn($location, $q, $http, $rootScope, drbblyCommonService) {
+        .service('badSettingsService', serviceFn);
+    serviceFn.$inject = ['$location', '$q', '$http', 'badCommonService'];
+    function serviceFn($location, $q, $http, badCommonService) {
         var _service = this;
         var _siteRoot = 'https://localhost:44395/';
         var _hostName = $location.host();
         var _servicePreset = 1; // 1 => VS, 2 => online test server, 3 => local IIS
-        var _serviceBase = _servicePreset === 1 ? 'https://localhost:44394/' :
+        var _serviceBase = _servicePreset === 1 ? 'https://localhost:44305/' :
             _servicePreset === 2 ? 'http://www.dribbly001.somee.com/' :
                 'http://' + _hostName + ':1080/';
         var _clientId = 'dribbly-web';
         var _clientSecret = '5YV7M1r981yoGhELyB84aC+KiYksxZf1OY3++C1CtRM=';
         var _settingsApiBaseUrl = 'api/settings/';
+
+        // File upload settings
+        var _defualtFileUploadApiEndPoint = 'api/Upload/'
+        var _maxVideoUploadMb = 20;
 
         var _getInitialSettings = function () {
             var deferred = $q.defer();
@@ -24,7 +28,7 @@
                     deferred.resolve();
                 })
                 .catch(function (error) {
-                    drbblyCommonService.handleError(error);
+                    badCommonService.handleError(error);
                     deferred.reject();
                 });
 
@@ -46,6 +50,8 @@
         _service.clientId = _clientId;
         _service.clientSecret = _clientSecret;
         _service.useSideNavigator = false;
+        _service.defualtFileUploadApiEndPoint = _defualtFileUploadApiEndPoint;
+        _service._maxVideoUploadMb = _maxVideoUploadMb;
 
         return _service;
     }

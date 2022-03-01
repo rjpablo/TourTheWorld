@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('bad.site.module')
-        .service('drbblyToastService', ['$timeout', 'toaster',
+        .service('badToastService', ['$timeout', 'toaster',
             function ($timeout, toaster) {
 
                 var timeout = 2000;

@@ -7,5 +7,6 @@
         <h5 class="mb-3 text-success">{{ tli.tour.price | badCurrency}}</h5>
         <pre class="richtext description">{{tli.tour.description}}</pre>
         <a ng-href="/Tours/Details/{{tli.tour.id}}">{{'app.ViewFullDetails' | badI18n}}</a>
+        <a ng-href="/Tours/Photos/{{tli.tour.id}}">See Photos</a>
     </div>
 </div>

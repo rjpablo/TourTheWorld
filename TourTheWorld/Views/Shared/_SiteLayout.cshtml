@@ -26,9 +26,13 @@
     <link href="~/src/app/ext/modules/site/custom-lib/ng-image-gallery/ng-image-gallery.min.css" rel="stylesheet" />
     <link href="~/src/app/ext/modules/site/site.css" rel="stylesheet" />
 
-    @* main components *@
+    @* site component styles *@
+    <link href="~/src/app/ext/modules/site/components/gallery/gallery.component.css" rel="stylesheet" />
+
+    @* main component styles *@
     <link href="~/src/app/int/components/tourlist/tourlist.component.css" rel="stylesheet" />
     <link href="~/src/app/int/components/tourlistitem/tourlistitem.component.css" rel="stylesheet" />
+    <link href="~/src/app/int/components/tourdetailsform/tourdetailsform.component.css" rel="stylesheet" />
 
 
     @* For ng-cloak to work effectively, angular.js must be loaded in the header section. But jquery must be loaded first
@@ -162,10 +166,18 @@
 
     @* site components *@
     <script src="~/src/app/ext/modules/site/components/date/date.component.js"></script>
+    <script src="~/src/app/ext/modules/site/components/gallery/gallery.component.js"></script>
 
     @* site services *@
-    <script src="~/src/app/ext/modules/site/services/datetime.service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/toast.service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/settings-service.js"></script>
     <script src="~/src/app/ext/modules/site/services/i18n-service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/common.service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/modal-service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/http-service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/datetime.service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/wizard.service.js"></script>
+    <script src="~/src/app/ext/modules/site/services/files.service.js"></script>
 
     @* site filters *@
     <script src="~/src/app/ext/modules/site/filters/currency.filter.js"></script>
@@ -176,9 +188,14 @@
 
     <script src="~/src/app/int/main.module.js"></script>
 
+    @* main services *@
+    <script src="~/src/app/int/services/tours.service.js"></script>
+
     @* main components *@
     <script src="~/src/app/int/components/tourlist/tourlist.component.js"></script>
     <script src="~/src/app/int/components/tourlistitem/tourlistitem.component.js"></script>
+    <script src="~/src/app/int/components/tourdetailsform/tourdetailsform.component.js"></script>
+    <script src="~/src/app/int/components/tourmedialist/tourmedialist.component.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

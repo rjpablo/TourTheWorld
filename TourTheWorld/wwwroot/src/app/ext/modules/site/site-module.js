@@ -11,7 +11,8 @@
         'ui.bootstrap.datetimepicker',
         'infinite-scroll',
         'aa.formExtensions',
-        'aa.notify'
+        'aa.notify',
+        'thatisuday.ng-image-gallery'
     ]);
 
     module.constant('constants', {

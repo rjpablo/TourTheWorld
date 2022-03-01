@@ -1,0 +1,38 @@
+﻿<div class="my-3 my-sm-5">
+    <h1>{{ 'app.AddAnEpicTour' | badI18n}}</h1>
+    <a href="/Tours">&lt;&lt;&nbsp;Back to Tours</a>
+</div>
+<form name="tdf.frmTourDetails" ng-submit="tdf.submitTour()">
+    <div class="form-group">
+        <label for="title">{{ 'site.Title' | badI18n}}</label>
+        <input name="title"
+               type="text"
+               ng-model="tdf.tour.title"
+               required
+               class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="description" class="control-label">{{ 'site.Details' | badI18n}}</label>
+        <textarea name="description"
+                  ng-model="tdf.tour.description"
+                  required
+                  maxlength="1500"
+                  class="form-control" rows="13"></textarea>
+        <span asp-validation-for="Description" class="text-right text-danger"></span>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12 col-sm-6">
+            <label for="price" class="control-label">{{'site.Price' | badI18n}}</label>
+            <input name="price" ng-model="tdf.tour.price" type="number" min="0" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit"
+                ng-disabled="tdf.isBusy || tdf.frmTourDetails.$invalid"
+                class="btn btn-primary btn-block">
+            {{'app.SubmitAndAddPhotos' | badI18n}}
+        </button>
+    </div>
+</form>

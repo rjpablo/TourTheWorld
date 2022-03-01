@@ -12,6 +12,8 @@
                     AboutUs: 'About Us',
                     AccountDetails: 'Account Details',
                     AccountSettings: 'Account Settings',
+                    Add: 'Add',
+                    AddPhotos: 'Add Photos',
                     Bookings: 'Bookings',
                     Cancel: 'Cancel',
                     Change: 'Change',
@@ -26,6 +28,7 @@
                     Delete: 'Delete',
                     DeleteAccount: 'Delete Account',
                     DeleteAccountPrompt: 'Deleting your account cannot be undone. Are you sure you want to do it?',
+                    Details: 'Details',
                     Done: 'Done',
                     Edit: 'Edit',
                     Email: 'Email',
@@ -53,6 +56,7 @@
                     FollowerCountDisplay: '{count} Follower(s)',
                     FollowUs: 'Follow Us',
                     From: 'From',
+                    GoBack: 'Go Back',
                     Home: 'Home',
                     Km: 'km',
                     LetsChat: 'Let\'s Chat',
@@ -74,6 +78,7 @@
                     OverlayBusyMsg: 'Hold on tight... A shot is on the way!',
                     Password: 'Password',
                     Posts: 'Posts',
+                    Price: 'Price',
                     ReactivateAccount: 'Re-activate Account',
                     Rating: 'Rating',
                     Remove: 'Remove',
@@ -87,6 +92,7 @@
                     SiteName: constants.site.name,
                     SlashHour: '/hr',
                     Submit: 'Submit',
+                    Title: 'Title',
                     To: 'To',
                     Unfollow: 'Unfollow',
                     Update: 'Update',
@@ -122,6 +128,9 @@
                     SignUp: 'Sign Up'
                 },
                 app: {
+                    AddAnEpicTour: 'Add an Epic Tour',
+                    AddTourMediaPrompt: 'Add photos and/or videos of the tour to show joiners what to expect.',
+                    SubmitAndAddPhotos: 'Submit and Add Photos',
                     ViewFullDetails: 'View Full Details'
                 }
             };

@@ -1,0 +1,11 @@
+bad-tourlistitem {
+    display: inline-block;
+    border: 1px solid #eee;
+    padding: 15px 5px;
+
+    pre.description {
+        max-height: 5rem;
+        overflow-y: hidden;
+        margin-bottom: 10px;
+    }
+}
