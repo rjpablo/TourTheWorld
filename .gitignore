@@ -10,7 +10,7 @@
 #Documentation
 Documentation.docx
 
-#Compiles css files
+#Compiled css files
 TourTheWorld/wwwroot/src/**/*.css
 
 #JSDoc output
@@ -20,6 +20,8 @@ TourTheWorld/jsdoc/out/
 Appsnodejsnpm-cache
 
 TourTheWorld/wwwroot/dist/
+#Uploaded files
+TourTheWorld/wwwroot/Files/Upload/
 Deployment Files/
 Designs/
 #Libraries
