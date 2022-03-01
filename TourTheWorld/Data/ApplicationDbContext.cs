@@ -14,14 +14,18 @@ namespace TourTheWorld.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        { }
+        {}
         public DbSet<TourModel> Tours { get; set; }
         public DbSet<AccountModel> Accounts { get; set; }
         public DbSet<MultimediaModel> Multimedia { get; set; }
+        public DbSet<TourMediaModel> TourMedia { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<TourMediaModel>()
+                .HasKey(x => new { x.TourId, x.MediaId });
 
             modelBuilder.Entity<MultimediaModel>().HasData(
                         new MultimediaModel()
