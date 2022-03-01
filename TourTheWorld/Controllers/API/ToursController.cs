@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bad.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TourTheWorld.Data;
 using TourTheWorld.Models;
+using TourTheWorld.Services;
 
 namespace TourTheWorld.Controllers.API
 {
@@ -15,10 +17,13 @@ namespace TourTheWorld.Controllers.API
     public class ToursController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IToursService _toursService;
 
-        public ToursController(ApplicationDbContext context)
+        public ToursController(ApplicationDbContext context,
+            IToursService toursService)
         {
             _context = context;
+            _toursService = toursService;
         }
 
         // GET: api/Tours
@@ -42,6 +47,13 @@ namespace TourTheWorld.Controllers.API
             return tourModel;
         }
 
+        [HttpGet]
+        [Route("[action]/{tourId}/{mediaId}")]
+        public async Task SetPrimaryMedia(long tourId, long mediaId)
+        {
+            await _toursService.SetPrimaryMedia(tourId, mediaId);
+        }
+
         // PUT: api/Tours/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -59,7 +71,7 @@ namespace TourTheWorld.Controllers.API
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) 
+            catch (DbUpdateConcurrencyException)
             {
                 if (!TourModelExists(id))
                 {
@@ -78,12 +90,17 @@ namespace TourTheWorld.Controllers.API
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<TourModel>> PostTourModel(TourModel tourModel)
+        [Route("[action]")]
+        public async Task<TourModel> AddTour(TourModel tourModel)
         {
-            _context.Tours.Add(tourModel);
-            await _context.SaveChangesAsync();
+            return await _toursService.Create(tourModel);
+        }
 
-            return CreatedAtAction("GetTourModel", new { id = tourModel.Id }, tourModel);
+        [HttpPost]
+        [Route("[action]/{tourId}")]
+        public async Task<List<MultimediaModel>> AddTourPhotos(long tourId, List<IFormFile> files)
+        {
+            return await _toursService.AddTourMedia(files, tourId);
         }
 
         // DELETE: api/Tours/5

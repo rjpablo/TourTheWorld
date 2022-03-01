@@ -1,3 +1,4 @@
+using Bad.Core.Configuration;
 using Bad.Email.Models;
 using Bad.Email.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using TourTheWorld.Data;
 using TourTheWorld.Models.Identity;
@@ -74,16 +76,28 @@ namespace TourTheWorld
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
             services.AddSession();
 
+            #region Add Core Components
+            services.AddBadCoreComponents();
+            #endregion
+
+            #region Add Repositories
+            services.AddScoped<IAccountsRepository, AccountsRepository>();
             services.AddScoped<ITourRepository, TourRepository>();
+            services.AddScoped<ITourMediaRepository, TourMediaRepository>();
+            services.AddScoped<IMultimediaRepository, MultimediaRepository>();
+            #endregion
+
+            #region Add Services
             services.AddScoped<IToursService, ToursService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IEmailConfiguration, EmailConfiguration>();
             services.AddScoped<IEmailSender, EmailSender>();
-            services.AddScoped<IAccountsRepository, AccountsRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

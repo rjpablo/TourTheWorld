@@ -10,6 +10,7 @@ using TourTheWorld.Data;
 using TourTheWorld.Models;
 using TourTheWorld.Repositories;
 using TourTheWorld.Services;
+using TourTheWorld.ViewModels.Tours;
 
 namespace TourTheWorld.Controllers
 {
@@ -53,7 +54,6 @@ namespace TourTheWorld.Controllers
         }
 
         // GET: Tours/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -73,6 +73,15 @@ namespace TourTheWorld.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(tourModel);
+        }
+
+        // GET: Tours/Photos/5
+        public async Task<IActionResult> Photos(long id)
+        {
+            TourMediaListViewModel vm = new TourMediaListViewModel();
+            vm.Tour = await _tourService.GetTourByIdAsync(id);
+            vm.MediaList = await _tourService.GetPhotosAsync(id);
+            return View("MediaList", vm);
         }
 
         // GET: Tours/Edit/5

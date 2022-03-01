@@ -1,0 +1,17 @@
+﻿@model TourTheWorld.ViewModels.Tours.TourMediaListViewModel
+
+@{
+    ViewData["Title"] = "Tour Photos";
+    Layout = "~/Views/Shared/_AppLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <div class="my-3 my-sm-5">
+            <a asp-action="Details" asp-route-id="@Model.Tour.Id">@Model.Tour.Title</a>
+            <h1> Photos</h1>
+        </div>
+        <bad-tourmedialist tour="app.model.tour"
+                           media-list="app.model.mediaList"></bad-tourmedialist>
+    </div>
+</div>
