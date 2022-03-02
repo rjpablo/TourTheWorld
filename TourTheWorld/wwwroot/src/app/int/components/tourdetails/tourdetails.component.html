@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-12 mb-3 mb-sm-5">
+        <bad-gallery tour="btd.tour"
+                     can-add="false"
+                     media="btd.media"
+                     options="{inline: true}"></bad-gallery>
+    </div>
+    <div class="col-12 col-md-8">
+        <div class="mb-3 mb-sm-5">
+            <h1 class="mb-3">{{btd.tour.title}}</h1>
+        </div>
+        <pre class="richtext description">{{btd.tour.description}}</pre>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h4 class="mb-3 text-center text-success">{{ btd.tour.price | badCurrency}}</h4>
+                <button type="button" class="btn btn-block btn-primary mt-3 mt-sm-5"
+                        ng-click="btd.requestToJoin()">Request to Join</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,8 @@
                     addTourMedia: (files, tourId) => {
                         return badFilesService.upload(files, baseApiRoute + `AddTourPhotos/${tourId}`);
                     },
-                    addTour: input => badHttpService.post(baseApiRoute + 'addTour/', input),
+                    addTour: input => badHttpService.post(baseApiRoute + 'AddTour/', input),
+                    getPhotos: tourId => badHttpService.get(baseApiRoute + `GetPhotos/${tourId}`),
                     /**
                      * Sets the tour's primary media
                      */

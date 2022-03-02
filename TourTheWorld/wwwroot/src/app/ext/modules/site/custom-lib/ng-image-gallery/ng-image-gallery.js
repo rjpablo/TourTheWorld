@@ -29,7 +29,9 @@
                     editButtonTitle: 'Edit this image...',
                     closeButtonTitle: 'Close',
                     externalLinkButtonTitle: 'Open image in new tab...'
-                }
+                },
+                showImageBackdrop: true,
+                imageBackdropColor: 'rgba(0, 0, 0, 0.8)'
             };
 
             return {
@@ -215,7 +217,7 @@
 
                         // Gallery backdrop container
                         // (hide for inline gallery)
-                        '<div class="ng-image-gallery-backdrop" ng-if="!inline"></div>' +
+                        '<div class="ng-image-gallery-backdrop" ng-if="showImageBackdrop || !inline"></div>' +
 
                         // Gallery contents container
                         // (hide when image is loading)
@@ -462,6 +464,8 @@
                                 scope.piracy = (conf.piracy != undefined) ? conf.piracy : (scope.piracy != undefined) ? scope.piracy : ngImageGalleryOpts.piracy;
                                 scope.imgAnim = (conf.imgAnim != undefined) ? conf.imgAnim : (scope.imgAnim != undefined) ? scope.imgAnim : ngImageGalleryOpts.imgAnim;
                                 scope.textValues = (conf.textValues != undefined) ? conf.textValues : (scope.textValues != undefined) ? scope.textValues : ngImageGalleryOpts.textValues;
+                                scope.showImageBackdrop = (conf.showImageBackdrop != undefined) ? conf.showImageBackdrop : (scope.showImageBackdrop != undefined) ? scope.showImageBackdrop : ngImageGalleryOpts.showImageBackdrop;
+                                scope.imageBackdropColor = (conf.imageBackdropColor != undefined) ? conf.imageBackdropColor : (scope.imageBackdropColor != undefined) ? scope.imageBackdropColor : ngImageGalleryOpts.imageBackdropColor;
                             });
 
                             scope.onOpen = (scope.onOpen != undefined) ? scope.onOpen : angular.noop;

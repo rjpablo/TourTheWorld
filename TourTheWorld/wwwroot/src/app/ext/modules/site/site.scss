@@ -180,6 +180,13 @@ pre.richtext {
     margin: 0 !important;
 }
 
+@include media-breakpoint-up(sm) {
+    /* Set the height of the inline gallery */
+    .ng-image-gallery.inline .ng-image-gallery-modal {
+        height: 450px;
+    }
+}
+
 .ng-image-gallery .ng-image-gallery-thumbnails .thumb > .loader {
     width: unset !important;
 }

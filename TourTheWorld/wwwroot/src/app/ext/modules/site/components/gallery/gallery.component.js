@@ -8,7 +8,8 @@
                 onDelete: '<',
                 onSelect: '<',
                 canAdd: '<',
-                media: '<'
+                media: '<',
+                options: '<'
             },
             controllerAs: 'glr',
             templateUrl: 'drbbly-default',
@@ -21,6 +22,7 @@
 
         glr.$onInit = function () {
             glr.media = glr.media || [];
+            glr._options = glr.options || {};
         };
 
         glr.deletePhoto = function (photo, done) {
