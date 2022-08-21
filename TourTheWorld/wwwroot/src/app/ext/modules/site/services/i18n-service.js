@@ -41,6 +41,8 @@
                     Error_Common_MustMatchPassword: 'Must match the password',
                     Error_Common_PleaseFixErrors: 'Please fix errors',
                     Error_Common_UnexpectedError: 'An unexpected error occurred. Please try again.',
+                    Error_Default_Title: 'Ooops...',
+                    Error_Default_Message: 'An unexpected error occurred. This has been reported and we\'re looking into it.',
                     Error_Map_CityNameNotFound: 'Could not retrieve city name.' +
                         ' Please try a different location.',
                     Error_Map_CountryNameNotFound: 'Could not retrieve country name.' +
@@ -130,6 +132,7 @@
                 app: {
                     AddAnEpicTour: 'Add an Epic Tour',
                     AddTourMediaPrompt: 'Add photos and/or videos of the tour to show joiners what to expect.',
+                    Error_Tour_FailedToRetrievePhotos: 'Failed to retrieve tour photos',
                     SubmitAndAddPhotos: 'Submit and Add Photos',
                     ViewFullDetails: 'View Full Details'
                 }

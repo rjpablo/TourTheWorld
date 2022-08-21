@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Bad.Core.Filters;
 using Bad.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TourTheWorld.Data;
 using TourTheWorld.Models;
 using TourTheWorld.Services;
@@ -14,6 +14,7 @@ namespace TourTheWorld.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(BadExceptionFilter))]
     public class ToursController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -35,16 +36,21 @@ namespace TourTheWorld.Controllers.API
 
         // GET: api/Tours/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TourModel>> GetTourModel(long id)
+        public async Task<IActionResult> GetTourModel(long id)
         {
             var tourModel = await _context.Tours.FindAsync(id);
 
             if (tourModel == null)
             {
-                return NotFound();
+                return NotFound($"No Tour was found for the ID {id}");
             }
 
-            return tourModel;
+            return Ok(tourModel);
+        }
+
+        public IActionResult GetNotFound()
+        {
+            return NotFound();
         }
 
         [HttpGet]
@@ -56,9 +62,14 @@ namespace TourTheWorld.Controllers.API
 
         [HttpGet]
         [Route("[action]/{tourId}")]
-        public async Task<IEnumerable<MultimediaModel>> GetPhotos(long tourId)
+        public async Task<IActionResult> GetPhotos(long tourId)
         {
-            return await _toursService.GetPhotosAsync(tourId);
+            if (!TourModelExists(tourId))
+            {
+                return NotFound($"Couldn't find tour with ID {tourId}");
+            }
+
+            return Ok(await _toursService.GetPhotosAsync(tourId));
         }
 
         // PUT: api/Tours/5

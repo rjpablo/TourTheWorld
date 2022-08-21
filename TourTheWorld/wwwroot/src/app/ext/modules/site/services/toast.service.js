@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('bad.site.module')
-        .service('badToastService', ['$timeout', 'toaster',
-            function ($timeout, toaster) {
+        .service('badToastService', ['$timeout', 'toaster', 'badI18nService',
+            function ($timeout, toaster, badI18nService) {
 
                 var timeout = 2000;
 
@@ -17,7 +17,7 @@
 
                 var _error = function (message, title) {
                     $timeout(function () {
-                        toaster.pop({ type: 'error', title: title || 'Error :(', body: message, showCloseButton: true, 'timeout': timeout });
+                        toaster.pop({ type: 'error', title: title || badI18nService.getString('site.Error_Default_Title'), body: message || badI18nService.getString('site.Error_Default_Title'), showCloseButton: true, 'timeout': timeout });
                     });
                 };
 

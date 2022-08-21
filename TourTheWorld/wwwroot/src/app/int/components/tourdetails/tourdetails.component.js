@@ -11,8 +11,8 @@
             controller: controllerFn
         });
 
-    controllerFn.$inject = ['badToursService'];
-    function controllerFn(badToursService) {
+    controllerFn.$inject = ['badToursService', 'badCommonService'];
+    function controllerFn(badToursService, badCommonService) {
         var btd = this;
 
         btd.$onInit = function () {
@@ -21,8 +21,7 @@
                     btd.media = photos || [];
                 })
                 .catch(error => {
-                    console.log('Failed to retrieve photos');
-                    console.log(error);
+                    badCommonService.handleError(error, 'app.Error_Tour_FailedToRetrievePhotos');
                 });
         };
 

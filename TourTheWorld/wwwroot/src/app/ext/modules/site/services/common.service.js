@@ -21,6 +21,8 @@
 
                         errorLog = buildErrorLog(error.message, error.message, null, null, error.stack);
                         $log.error(errorLog);
+
+                        badToastService.error(friendlyMsg)
                     }
                 };
 
