@@ -1,6 +1,12 @@
 ﻿<div class="my-3 my-sm-5">
-    <h1>{{ 'app.AddAnEpicTour' | badI18n}}</h1>
-    <a href="/Tours">&lt;&lt;&nbsp;Back to Tours</a>
+    <div ng-if="!tdf.isEdit">
+        <h1>{{ 'app.AddAnEpicTour' | badI18n}}</h1>
+        <a href="/Tours">&lt;&lt;&nbsp;Back to Tours</a>
+    </div>
+    <div ng-if="tdf.isEdit">
+        <h1>Edit Tour Details</h1>
+        <a ng-href="/Tours/Details/{{tdf.tour.id}}">&lt;&lt;&nbsp;Back to Tour Details</a>
+    </div>
 </div>
 <form name="tdf.frmTourDetails" ng-submit="tdf.submitTour()">
     <div class="form-group">
@@ -30,9 +36,9 @@
     </div>
     <div class="form-group">
         <button type="submit"
-                ng-disabled="tdf.isBusy || tdf.frmTourDetails.$invalid"
+                ng-disabled="tdf.isBusy || tdf.frmTourDetails.$invalid || tdf.frmTourDetails.$pristine"
                 class="btn btn-primary btn-block">
-            {{'app.SubmitAndAddPhotos' | badI18n}}
+            {{tdf.isEdit ? 'site.Submit' : 'app.SubmitAndAddPhotos' | badI18n}}
         </button>
     </div>
 </form>

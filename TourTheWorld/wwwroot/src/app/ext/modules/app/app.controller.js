@@ -6,7 +6,7 @@
             var app = this;
 
             this.$onInit = function () {
-                app.model = BAD.model; // the View's model
+                app.model = BAD ? BAD.model : {}; // the View's model
             };
 
         }]);

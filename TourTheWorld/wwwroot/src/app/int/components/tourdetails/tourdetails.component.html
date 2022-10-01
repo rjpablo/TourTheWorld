@@ -12,12 +12,17 @@
         <pre class="richtext description">{{btd.tour.description}}</pre>
     </div>
     <div class="col-12 col-md-4">
-        <div class="card shadow-sm border-0">
+        <div class="card shadow-sm border-0 mb-3">
             <div class="card-body">
                 <h4 class="mb-3 text-center text-success">{{ btd.tour.price | badCurrency}}</h4>
-                <button type="button" class="btn btn-block btn-primary mt-3 mt-sm-5"
-                        ng-click="btd.requestToJoin()">Request to Join</button>
             </div>
         </div>
+        <button type="button" class="btn btn-block btn-primary mb-1"
+                ng-click="btd.requestToJoin()">
+            Request to Join
+        </button>
+        <a ng-href="/Tours/Edit/{{btd.tour.id}}" class="btn btn-primary d-block">
+            Edit Tour Details
+        </a>
     </div>
 </div>

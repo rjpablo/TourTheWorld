@@ -76,6 +76,11 @@ namespace TourTheWorld
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Identity/Account/Login"; // sets the redirect URL when authentication fails for a request
+            });
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddRazorPages();

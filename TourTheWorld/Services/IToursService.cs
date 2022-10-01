@@ -14,6 +14,7 @@ namespace TourTheWorld.Services
         Task<TourModel> GetTourByIdAsync(long id);
         Task SetPrimaryMedia(long tourId, long mediaId);
         Task<TourModel> Create(TourModel tour);
+        Task<TourModel> Update(TourModel tour);
         Task<IEnumerable<MultimediaModel>> GetPhotosAsync(long tourId);
     }
 }

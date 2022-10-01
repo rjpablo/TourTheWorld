@@ -62,6 +62,13 @@ namespace TourTheWorld.Services
             return tour;
         }
 
+        public async Task<TourModel> Update(TourModel tour)
+        {
+            _tourRepository.Update(tour);
+            await _tourRepository.SaveChangesAsync();
+            return tour;
+        }
+
         public async Task SetPrimaryMedia(long tourId, long mediaId)
         {
             var tour = await _tourRepository.GetByIDAsync(tourId);

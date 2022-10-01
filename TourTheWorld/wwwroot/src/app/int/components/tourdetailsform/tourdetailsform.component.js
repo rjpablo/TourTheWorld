@@ -45,14 +45,26 @@
         //}
 
         tdf.submitTour = function () {
-            badToursService.addTour(tdf.tour)
-                .then((tour) => {
-                    tdf.tour = tour;
-                    tdf.frmTourDetails.$setSubmitted();
-                    location.href = `/Tours/Photos/${tour.id}`;
-                })
-                .catch((err) => { console.log(err) })
-                .finally(() => tdf.isBusy = false);
+            if (tdf.isEdit) {
+                badToursService.updateTour(tdf.tour)
+                    .then((tour) => {
+                        tdf.tour = tour;
+                        tdf.frmTourDetails.$setSubmitted();
+                        location.href = `/Tours/Details/${tour.id}`;
+                    })
+                    .catch((err) => { console.log(err) })
+                    .finally(() => tdf.isBusy = false);
+            }
+            else {
+                badToursService.addTour(tdf.tour)
+                    .then((tour) => {
+                        tdf.tour = tour;
+                        tdf.frmTourDetails.$setSubmitted();
+                        location.href = `/Tours/Photos/${tour.id}`;
+                    })
+                    .catch((err) => { console.log(err) })
+                    .finally(() => tdf.isBusy = false);
+            }
         }
     }
 })();

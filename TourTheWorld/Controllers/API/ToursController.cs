@@ -1,5 +1,6 @@
 ﻿using Bad.Core.Filters;
 using Bad.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,9 +30,9 @@ namespace TourTheWorld.Controllers.API
 
         // GET: api/Tours
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TourModel>>> GetTours()
+        public async Task<IActionResult> GetTours()
         {
-            return await _context.Tours.ToListAsync();
+            return Ok(await _context.Tours.ToListAsync());
         }
 
         // GET: api/Tours/5
@@ -75,33 +76,11 @@ namespace TourTheWorld.Controllers.API
         // PUT: api/Tours/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTourModel(long id, TourModel tourModel)
+        [HttpPost("[action]")]
+        [Authorize]
+        public async Task<IActionResult> UpdateTour(TourModel tourModel)
         {
-            if (id != tourModel.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tourModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TourModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(await _toursService.Update(tourModel));
         }
 
         // POST: api/Tours
@@ -109,9 +88,9 @@ namespace TourTheWorld.Controllers.API
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         [Route("[action]")]
-        public async Task<TourModel> AddTour(TourModel tourModel)
+        public async Task<IActionResult> AddTour(TourModel tourModel)
         {
-            return await _toursService.Create(tourModel);
+            return Ok(await _toursService.Create(tourModel));
         }
 
         [HttpPost]
